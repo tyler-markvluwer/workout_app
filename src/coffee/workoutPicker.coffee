@@ -24,13 +24,15 @@ WorkoutPicker = React.createClass
 
 	render: ->
 		# print "exercise render"
-		ul
-			className: 'workout-list'
-			for i in [@props.model.workouts.length-1..0]
-				li
-					className: 'workout-summary'
-					onClick: @setCurrentWorkout.bind(this, i)
-					@props.model.workouts[i].name
+		div
+			className: 'container'
+			ul
+				className: 'workout-list list-inline'
+				for i in [@props.model.workouts.length-1..0]
+					li
+						className: 'workout-summary'
+						onClick: @setCurrentWorkout.bind(this, i)
+						@props.model.workouts[i].name
 
 
 module.exports = React.createFactory(WorkoutPicker)

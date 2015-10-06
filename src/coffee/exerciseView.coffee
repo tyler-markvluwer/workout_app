@@ -59,15 +59,11 @@ ExerciseView = React.createClass
 
 			div
 				className: 'exercise-info row'
-				# div
-				# 	className: 'col-md-3'
-				# 	'\nExercise: ' + @props.model.get_current_exercise().name
 				div
-					className: 'col-md-6'
+					className: 'col-lg-12'
 					'\nSets Remaining: ' + @props.model.get_current_exercise().sets_remaining
-				# div
-				# 	className: 'col-md-3'
-				# 	'\nReps: ' + @props.model.get_current_exercise().motion.reps
+			div
+				className: 'exercise-info row'
 				div
 					className: 'col-md-6'
 					id: 'weight-test'
