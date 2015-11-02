@@ -1,10 +1,15 @@
 React = require('react')
+Model = require('./model')
+
+window.model = new Model()
 
 User = require('./user')
 WorkoutView = require('./workoutView')
-WorkoutPicker = require('./workoutPicker')
+WorkoutPickerView = require('./workoutPickerView')
 JsonWorkoutParser = require('./jsonWorkoutParser')
-Model = require('./model')
+MasterNavBarView = require('./masterNavBarView')
+LoginModal = require('./LoginModal')
+RegisterModal = require('./registerModal')
 key1 = require('./key1')
 key2 = require('./key2')
 
@@ -38,26 +43,43 @@ day54 = require('./workouts/day54')
 day55 = require('./workouts/day55')
 day56 = require('./workouts/day56')
 
-workout_array = []
-
+# add the pre-loaded workouts
 minVal = 30
 maxVal = 56
 while maxVal >= minVal
 	include_string = './workouts/day' + maxVal.toString()
 	maxVal -= 1
 	parser = new JsonWorkoutParser(require(include_string))
-	workout_array.push parser.getWorkout()
+	window.model.add_workout(parser.getWorkout())
 
-model = new Model(workout_array)
+# Render the modals in the background
+React.render(
+	RegisterModal
+		id: 'register-modal'
+		modal_title: 'Welcome!'
+	document.getElementById('register-modal-mount') # where to mount it
+)
+React.render(
+	LoginModal
+		id: 'login-modal'
+		modal_title: 'Welcome Back!'
+	document.getElementById('login-modal-mount') # where to mount it
+)
 
-workout_view = React.render(
+React.render(
+	MasterNavBarView
+		nullProp: null
+	document.getElementById('navbar-mount')
+)
+
+React.render(
 	WorkoutView
-		model: model
+		model: window.model
 	document.getElementById('workout-view-mount')
 )
 
 React.render(
-	WorkoutPicker
-		model: model
+	WorkoutPickerView
+		model: window.model
 	document.getElementById('workout-picker-view-mount')
 )

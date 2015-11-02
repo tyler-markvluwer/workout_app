@@ -12,7 +12,6 @@ class Workout extends EventEmitter
 	start_workout: () ->
 		start_date = new Date()
 		@start = start_date.toString()
-		# console.log "start: " + @start
 
 	add_exercise: (new_exercise) ->
 		@exercises.push new_exercise
@@ -24,7 +23,6 @@ class Workout extends EventEmitter
 	end_workout: () ->
 		end_date = new Date()
 		@end = end_date.toString()
-		# console.log "end: " + @end
 
 	get_current_exercise: () ->
 		return @exercises[@ex_index]

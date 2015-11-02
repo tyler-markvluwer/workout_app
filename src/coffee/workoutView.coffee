@@ -19,7 +19,8 @@ WorkoutView = React.createClass
 	render: ->
 		# print "workout render"
 		div
-			className: 'workout-view container'
+			className: 'container'
+				
 			ExerciseView
 				model: @props.model
 			TimerView
